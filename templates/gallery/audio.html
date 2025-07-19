@@ -1,0 +1,91 @@
+{% extends 'gallery/base.html' %}
+{% block content %}
+<style>
+    body {
+  /* For the full-page background */
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #322d64 0%,
+    #222149 40%,
+    #131323 100%
+  );
+}
+
+    .audio-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        padding: 32px 40px;
+    }
+    .audio-container h2 {
+        text-align: center;
+        color: #2d3748;
+        margin-bottom: 28px;
+        letter-spacing: 1px;
+    }
+    ul.audio-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    ul.audio-list li {
+        background: #f1f5f9;
+        border-radius: 8px;
+        margin-bottom: 22px;
+        padding: 18px 20px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    ul.audio-list li:last-child {
+        margin-bottom: 0;
+    }
+    .audio-name {
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+    }
+    audio {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    a.download-link {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+    a.download-link:hover {
+        color: #1e40af;
+        text-decoration: underline;
+    }
+</style>
+<div class="audio-container">
+    <h2>3d Bhajans</h2>
+    <p style="text-align:center; color:#64748b; font-size:16px; margin-top:-16px; margin-bottom:24px;">
+        <em>(Use headphones for best experience)</em>
+    </p></p>
+    <ul class="audio-list">
+        {% for audio in audios %}
+        <li>
+            <span class="audio-name">{{ audio.name }}</span>
+            <audio controls>
+                <source src="{{ audio.audio_file.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <a class="download-link" href="{{ audio.audio_file.url }}" download>
+                <button type="button" style="padding: 8px 18px; background: #2563eb; color: #fff; border: none; border-radius: 5px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.2s;">
+                    Download
+                </button>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

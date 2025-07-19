@@ -1,0 +1,70 @@
+{% extends 'gallery/base.html' %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom: 32px; color: #fff;">Smrutis</h2>
+<style>
+body {
+  /* For the full-page background */
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #322d64 0%,
+    #222149 40%,
+    #131323 100%
+  );
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+    padding: 16px;
+}
+.wallpaper-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.2s;
+}
+.wallpaper-card:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.wallpaper-card img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+.download-btn {
+    display: inline-block;
+    margin: 6px 8px 0 8px;
+    padding: 8px 18px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.download-btn:hover {
+    background: #1e40af;
+}
+</style>
+<div class="gallery">
+    {% for image in images %}
+    <div class="wallpaper-card">
+        <img src="{{ image.image_desktop.url }}" alt="{{ image.name }}">
+        <div>
+            <a href="{{ image.image_desktop.url }}" download class="download-btn">Download Desktop</a>
+            <a href="{{ image.image_mobile.url }}" download class="download-btn">Download Mobile</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

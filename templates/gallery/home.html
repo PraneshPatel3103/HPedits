@@ -1,0 +1,28 @@
+{% extends 'gallery/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .fullscreen-video {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+    }
+    .content-overlay {
+        position: relative;
+        z-index: 1;
+        color: white;
+        text-align: center;
+        margin-top: 40vh;
+        text-shadow: 0 2px 8px #000;
+    }
+</style>
+<video class="fullscreen-video" autoplay muted loop>
+    <source src="{% static 'gallery/sample.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<div class="content-overlay">
+    <h1></h1>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+
+{% extends 'gallery/base.html' %}
+{% block content %}
+<h2>Audio Gallery</h2>
+{% for audio in audio_files %}
+<div>
+    <h3>{{ audio.name }}</h3>
+    <audio controls>
+        <source src="{{ audio.audio_file.url }}" type="audio/mpeg">
+    </audio>
+    <a href="{{ audio.audio_file.url }}" download>Download</a>
+</div>
+{% endfor %}
+{% endblock %}
