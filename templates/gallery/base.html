@@ -1,105 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
-    <link rel="stylesheet" href="/static/gallery/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photo Gallery</title>
+  <link rel="stylesheet" href="/static/gallery/styles.css">
 </head>
 <body>
-    <nav class="navbar navbar-glow">
-        <div class="navbar-logo">
-            <a href="/"><img src="/static/gallery/logo.png" alt="Logo" /></a>
-            <div class="navbar-title">Hariprabodham Edits</div>
-        </div>
-        <div class="navbar-links">
-            <a href="/">Home</a>
-            <a href="/wallpaper/">Wallpaper</a>
-            <a href="/audio/">Audio</a>
-        </div>
-    </nav>
+  <nav class="navbar navbar-glow">
+    <div class="navbar-logo">
+      <a href="/"><img src="/static/gallery/logo.png" alt="Logo" /></a>
+      <div class="navbar-title">Hariprabodham Edits</div>
+    </div>
 
-    <style>
+    <!-- ✅ Hamburger icon -->
+    <button class="navbar-toggle" id="navbarToggle">&#9776;</button>
+
+    <div class="navbar-links" id="navbarLinks">
+      <a href="/">Home</a>
+      <a href="/wallpaper/">Wallpaper</a>
+      <a href="/audio/">Audio</a>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <style>
     .navbar-glow {
-        border-radius: 18px;
-        position: relative;
-        overflow: visible;
-        background-color: #000000;
-        box-shadow: 0 0 8px 3px #ff9800, 0 0 16px 6px #ff9800aa;
-        border: 1px solid #ff9800aa;
-        margin: 1rem; /* optional spacing from edges */
+      border-radius: 18px;
+      position: relative;
+      overflow: visible;
+      background-color: #000000;
+      box-shadow: 0 0 8px 3px #ff9800, 0 0 16px 6px #ff9800aa;
+      border: 1px solid #ff9800aa;
+      margin: 1rem;
     }
 
     .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.7rem 2rem;
-        background-color: transparent;
-        box-shadow: none;
-        flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 2rem;
+      flex-wrap: wrap;
     }
 
     .navbar-logo {
-        display: flex;
-        align-items: center;
+      display: flex;
+      align-items: center;
     }
 
     .navbar-logo img {
-        height: 40px;
-        width: 40px;
-        margin-right: 0.7rem;
-        filter: drop-shadow(0 0 8px #ff9800aa);
+      height: 40px;
+      width: 40px;
+      margin-right: 0.7rem;
+      filter: drop-shadow(0 0 8px #ff9800aa);
     }
 
     .navbar-title {
-        color: #ff9800;
-        font-size: 1.3rem;
-        font-weight: 600;
-        letter-spacing: 1px;
+      color: #ff9800;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
 
     .navbar-links {
-        display: flex;
-        gap: 1.2rem;
+      display: flex;
+      gap: 1.2rem;
     }
 
     .navbar-links a {
-        color: #ff9800;
-        text-decoration: none;
-        font-size: 1.05rem;
-        padding: 0.4rem 0.9rem;
-        border-radius: 4px;
-        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      color: #ff9800;
+      text-decoration: none;
+      font-size: 1.05rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     }
 
     .navbar-links a:hover {
-        background: #ff9800;
-        color: #111;
-        box-shadow: 0 0 8px 2px #ff9800aa;
+      background: #ff9800;
+      color: #111;
+      box-shadow: 0 0 8px 2px #ff9800aa;
+    }
+
+    .navbar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #ff9800;
+      cursor: pointer;
     }
 
     @media (max-width: 600px) {
-        .navbar {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 1rem;
-        }
+      .navbar {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-        .navbar-links {
-            flex-direction: column;
-            width: 100%;
-            gap: 0.5rem;
-            margin-top: 0.7rem;
-        }
+      .navbar-logo {
+        margin-bottom: 0.7rem;
+      }
 
-        .navbar-links a {
-            width: 100%;
-            text-align: left;
-        }
+      .navbar-toggle {
+        display: block;
+        position: absolute;
+        top: 1.2rem;
+        right: 1.5rem;
+      }
+
+      .navbar-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+      }
+
+      .navbar-links.show {
+        display: flex;
+      }
+
+      .navbar-links a {
+        display: block;
+        width: 100%;
+        text-align: left;
+      }
     }
-    </style>
+  </style>
 
-    {% block content %}{% endblock %}
+  <script>
+    const toggle = document.getElementById('navbarToggle');
+    const links = document.getElementById('navbarLinks');
+
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
