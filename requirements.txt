@@ -2,8 +2,10 @@ asgiref==3.8.1
 Django==5.2.3
 et_xmlfile==2.0.0
 fpdf==1.7.2
+gunicorn==23.0.0
 numpy==2.2.4
 openpyxl==3.1.5
+packaging==25.0
 pandas==2.2.3
 pillow==11.2.1
 PyPDF2==3.0.1
