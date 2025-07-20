@@ -9,8 +9,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://hpedits-production.up.railway.app'
-    'https://hpedits.up.railway.app'
+    "https://hpedits.up.railway.app",
 ]
 
 
